@@ -64,10 +64,6 @@ export default function MainApp() {
 	const myUser = useUserContext();
 
 	const [fontsLoaded] = useFonts({
-		BarlowBold: require("./assets/fonts/Barlow-Bold.ttf"),
-		BarlowThin: require("./assets/fonts/Barlow-Thin.ttf"),
-		BarlowItalicMedium: require("./assets/fonts/Barlow-MediumItalic.ttf"),
-		BarlowRegular: require("./assets/fonts/Barlow-Regular.ttf"),
 		SF_Display_Bold: require("./assets/fonts/SF-Pro-Display-Bold.otf"),
 		SF_Display_Italic: require("./assets/fonts/SF-Pro-Display-RegularItalic.otf"),
 		SF_Rounded_Regular: require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
