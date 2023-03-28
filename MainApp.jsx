@@ -4,8 +4,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
-
+import { Icon } from "@rneui/themed";
 import { useFonts } from "expo-font";
+
 import Initialize from "./screens/Initialize";
 import LoginPage from "./screens/LoginPage";
 import SignupPage from "./screens/SignupPage";
@@ -32,22 +33,184 @@ const LoggedIn = () => {
 	return (
 		<Tab.Navigator
 			initialRouteName="home"
-			screenOptions={{ headerShown: false }}
+			screenOptions={{
+				headerShown: false,
+			}}
 		>
 			{myUser.userType.current === "reviewer" ? (
 				<>
-					<Tab.Screen name="home" component={PendingReviewer} />
-					<Tab.Screen name="approved" component={ApprovedRev} />
-					<Tab.Screen name="denied" component={DeniedRev} />
+					<Tab.Screen
+						name="home"
+						component={PendingReviewer}
+						options={{
+							tabBarLabel: "Pending",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="clock"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="approved"
+						component={ApprovedRev}
+						options={{
+							tabBarLabel: "Approved",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="check"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="denied"
+						component={DeniedRev}
+						options={{
+							tabBarLabel: "Denied",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="x"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
 					<Tab.Screen name="profile" component={Profile} />
 				</>
 			) : (
 				<>
-					<Tab.Screen name="home" component={PendingReq} />
-					<Tab.Screen name="approved" component={ApprovedReq} />
-					<Tab.Screen name="denied" component={DeniedReq} />
-					<Tab.Screen name="request" component={CreateRequest} />
-					<Tab.Screen name="profile" component={Profile} />
+					<Tab.Screen
+						name="home"
+						component={PendingReq}
+						options={{
+							tabBarLabel: "Pending",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="clock"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="approved"
+						component={ApprovedReq}
+						options={{
+							tabBarLabel: "Approved",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="check"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="denied"
+						component={DeniedReq}
+						options={{
+							tabBarLabel: "Denied",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="x"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="request"
+						component={CreateRequest}
+						options={{
+							tabBarLabel: "Create Request",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="edit-3"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
+					<Tab.Screen
+						name="profile"
+						component={Profile}
+						options={{
+							tabBarLabel: "Profile",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="user"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
 				</>
 			)}
 		</Tab.Navigator>
