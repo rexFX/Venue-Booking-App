@@ -11,7 +11,7 @@ import Initialize from "./screens/Initialize";
 import LoginPage from "./screens/LoginPage";
 import SignupPage from "./screens/SignupPage";
 import { useUserContext } from "./context/context";
-import Profile from "./screens/profile";
+import Profile from "./screens/Profile";
 
 import PendingReviewer from "./screens/reviewer/PendingReviewer";
 import ApprovedRev from "./screens/reviewer/ApprovedRev";
