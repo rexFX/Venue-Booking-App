@@ -9,13 +9,13 @@ import { useUserContext } from "../../context/context";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
 
-const Requester = ({ navigation }) => {
-	const [pendingRequests, setPendingRequests] = useState({});
+const DeniedReq = ({ navigation }) => {
+	const [deniedRequests, setDeniedRequests] = useState({});
 	const myUser = useUserContext();
 
 	useFocusEffect(() => {
 		navigation.getParent("parentStackNavigator").setOptions({
-			headerTitle: `Welcome, ${myUser.user}`,
+			headerTitle: "Denied requests",
 			headerRight: () => {
 				return (
 					<TouchableOpacity
@@ -50,10 +50,19 @@ const Requester = ({ navigation }) => {
 				}
 			)
 			.then((res) => {
-				setPendingRequests(res.data.reverse());
+				setDeniedRequests(
+					res.data
+						.filter((el) => {
+							return el.bookingStatus === "Denied";
+						})
+						.reverse()
+				);
 			})
 			.catch((err) =>
-				console.log("error in getting all requests for requester", err)
+				console.log(
+					"error in getting denied requests for requester",
+					err
+				)
 			);
 	}, [myUser.refresh]);
 
@@ -64,7 +73,7 @@ const Requester = ({ navigation }) => {
 	return (
 		<SafeAreaView>
 			<FlatList
-				data={pendingRequests}
+				data={deniedRequests}
 				renderItem={renderItem}
 				keyExtractor={(item) => item.booking_id}
 				showsVerticalScrollIndicator={false}
@@ -75,4 +84,4 @@ const Requester = ({ navigation }) => {
 	);
 };
 
-export default Requester;
+export default DeniedReq;

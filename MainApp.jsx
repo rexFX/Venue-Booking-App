@@ -11,8 +11,14 @@ import LoginPage from "./screens/LoginPage";
 import SignupPage from "./screens/SignupPage";
 import { useUserContext } from "./context/context";
 import Profile from "./screens/profile";
-import Reviewer from "./screens/reviewer/Reviewer";
-import Requester from "./screens/requester/Requester";
+
+import PendingReviewer from "./screens/reviewer/PendingReviewer";
+import ApprovedRev from "./screens/reviewer/ApprovedRev";
+import DeniedRev from "./screens/reviewer/DeniedRev";
+
+import PendingReq from "./screens/requester/PendingReq";
+import ApprovedReq from "./screens/requester/ApprovedReq";
+import DeniedReq from "./screens/requester/DeniedReq";
 import CreateRequest from "./screens/requester/CreateRequest";
 
 const Stack = createNativeStackNavigator();
@@ -30,12 +36,16 @@ const LoggedIn = () => {
 		>
 			{myUser.userType.current === "reviewer" ? (
 				<>
-					<Tab.Screen name="home" component={Reviewer} />
+					<Tab.Screen name="home" component={PendingReviewer} />
+					<Tab.Screen name="approved" component={ApprovedRev} />
+					<Tab.Screen name="denied" component={DeniedRev} />
 					<Tab.Screen name="profile" component={Profile} />
 				</>
 			) : (
 				<>
-					<Tab.Screen name="home" component={Requester} />
+					<Tab.Screen name="home" component={PendingReq} />
+					<Tab.Screen name="approved" component={ApprovedReq} />
+					<Tab.Screen name="denied" component={DeniedReq} />
 					<Tab.Screen name="request" component={CreateRequest} />
 					<Tab.Screen name="profile" component={Profile} />
 				</>

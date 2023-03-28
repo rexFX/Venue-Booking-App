@@ -206,6 +206,29 @@ const RequesterCards = ({ data }) => {
 							</Text>
 						</View>
 					</View>
+					<View
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "baseline",
+						}}
+					>
+						<View style={{ width: "50%" }}>
+							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+								Status:
+							</Text>
+						</View>
+						<View style={{ width: "50%" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Regular",
+									textAlign: "right",
+								}}
+							>
+								{data.bookingStatus}
+							</Text>
+						</View>
+					</View>
 				</View>
 			</Card>
 		</View>

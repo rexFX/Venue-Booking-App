@@ -48,7 +48,9 @@ const LoginPage = () => {
 				selectedTextStyle={Styles.selectedRadioButtonText}
 				onPress={(value) => {
 					setSelectedIndex(value);
-					setSelectedUserType(value === 0 ? "Requester" : "Approver");
+					setSelectedUserType(
+						value === 0 ? "a Requester" : "an Approver"
+					);
 				}}
 				containerStyle={Styles.radioButton}
 				textStyle={{
