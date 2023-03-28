@@ -102,7 +102,27 @@ const LoggedIn = () => {
 							},
 						}}
 					/>
-					<Tab.Screen name="profile" component={Profile} />
+					<Tab.Screen
+						name="profile"
+						component={Profile}
+						options={{
+							tabBarLabel: "Profile",
+							tabBarLabelStyle: {
+								marginBottom: 4,
+								marginTop: -5,
+							},
+							tabBarIcon: () => {
+								return (
+									<Icon
+										name="user"
+										type="feather"
+										color="black"
+										size={18}
+									/>
+								);
+							},
+						}}
+					/>
 				</>
 			) : (
 				<>
