@@ -1,8 +1,16 @@
 import axios from "axios";
 import { createContext, useContext, useState, useRef } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import messaging from '@react-native-firebase/messaging';
+import { firebase } from '@react-native-firebase/database';
+
 
 const UserContext = createContext();
+const reference = firebase
+	.app()
+	.database(
+		"https://venue-booking-app-7b055-default-rtdb.asia-southeast1.firebasedatabase.app/"
+	);
 
 export const UserContextProvider = ({ children }) => {
 	const [isSignedIn, setIsSignedIn] = useState(false);
@@ -12,6 +20,18 @@ export const UserContextProvider = ({ children }) => {
 	const [user, setUser] = useState('');
 	const userType = useRef('');
 	const token = useRef('');
+	const userID = useRef('');
+
+	const fcmTokenSetter = async () => {
+		await messaging().registerDeviceForRemoteMessages();
+		await messaging().getToken().then((fcmToken) => {
+			reference.ref(`/DeviceIDs/${userID.current}/`).set(fcmToken).then(() => console.log('data set'));
+		})
+	}
+
+	const fcmTokenRemover = async () => {
+		reference.ref(`/DeviceIDs/${userID.current}/`).remove().then(() => console.log('data removed'));
+	}
 
 	const initializer = () => {
 		AsyncStorage.getItem("signedIn", (err, result) => {
@@ -27,6 +47,12 @@ export const UserContextProvider = ({ children }) => {
 			}
 		})
 
+		AsyncStorage.getItem("userID", (err, result) => {
+			if (!err) {
+				if (result !== null) userID.current = result;
+			}
+		})
+
 		AsyncStorage.getItem("userType", (err, result) => {
 			if (!err) {
 				if (result !== null) userType.current = result;
@@ -36,6 +62,9 @@ export const UserContextProvider = ({ children }) => {
 		AsyncStorage.getItem("token", (err, result) => {
 			if (!err) {
 				if (result !== null) token.current = result;
+				if (token.current.length > 0) {
+					fcmTokenSetter();
+				}
 			}
 		})
 
@@ -57,14 +86,17 @@ export const UserContextProvider = ({ children }) => {
 	};
 
 	const signInHandler = async (res, type) => {
-
 		await AsyncStorage.setItem('signedIn', 'true');
 		await AsyncStorage.setItem('user', res.data.user.name);
 		await AsyncStorage.setItem('userType', type);
 		await AsyncStorage.setItem('token', res.data.token);
+
+
 		setUser(res.data.user.name);
 		userType.current = type;
 		token.current = res.data.token;
+		userID.current = res.data.user.id;
+		await fcmTokenSetter();
 
 		axios.get('https://venuebooking.onrender.com/api/v1/getReviewers', {
 			headers: {
@@ -176,9 +208,12 @@ export const UserContextProvider = ({ children }) => {
 		await AsyncStorage.removeItem('user');
 		await AsyncStorage.removeItem('token');
 		await AsyncStorage.removeItem('userType');
+		await AsyncStorage.removeItem('userID');
 		setUser('');
 		userType.current = '';
+		userID.current = '';
 		token.current = '';
+		await fcmTokenRemover();
 		setIsSignedIn(false);
 	}
 
@@ -195,7 +230,9 @@ export const UserContextProvider = ({ children }) => {
 		token,
 		reviewers,
 		refresh,
-		refreshView
+		refreshView,
+		userID,
+		reference
 	}}>{children}</UserContext.Provider>;
 };
 

@@ -2,6 +2,7 @@ node_modules/
 .expo/
 dist/
 npm-debug.*
+google-services.json
 *.jks
 *.p8
 *.p12
@@ -9,6 +10,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+android/
 
 # macOS
 .DS_Store
