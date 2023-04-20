@@ -7,6 +7,9 @@ import { useCallback, useEffect } from "react";
 import { Icon } from "@rneui/themed";
 import { useFonts } from "expo-font";
 
+import { Alert } from "react-native";
+import messaging from "@react-native-firebase/messaging";
+
 import Initialize from "./screens/Initialize";
 import LoginPage from "./screens/LoginPage";
 import SignupPage from "./screens/SignupPage";
@@ -25,10 +28,21 @@ import CreateRequest from "./screens/requester/CreateRequest";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch((err) => console.log(err));
 
 const LoggedIn = () => {
 	const myUser = useUserContext();
+
+	useEffect(() => {
+		const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+			Alert.alert(
+				remoteMessage.notification.title,
+				remoteMessage.notification.body
+			);
+		});
+
+		return unsubscribe;
+	}, []);
 
 	return (
 		<Tab.Navigator

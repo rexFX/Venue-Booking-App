@@ -1,4 +1,4 @@
-import { FlatList } from "react-native";
+import { FlatList, View, Text, ActivityIndicator } from "react-native";
 import RequesterCards from "../../components/RequesterCards";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
@@ -8,9 +8,12 @@ import axios from "axios";
 import { useUserContext } from "../../context/context";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
+import { REACT_APP_SERVER_URL } from "@env";
+import Styles from "../../constants/Styles";
 
 const ApprovedReq = ({ navigation }) => {
 	const [approvedRequests, setApprovedRequests] = useState({});
+	const [loading, setLoading] = useState(true);
 	const myUser = useUserContext();
 
 	useFocusEffect(() => {
@@ -40,29 +43,45 @@ const ApprovedReq = ({ navigation }) => {
 	});
 
 	useEffect(() => {
+		setLoading(true);
 		axios
-			.get(
-				"https://venuebooking.onrender.com/api/v1/getAppRequestsRequester",
-				{
-					headers: {
-						Authorization: `Bearer ${myUser.token.current}`,
-					},
-				}
-			)
+			.get(`${REACT_APP_SERVER_URL}/api/v1/getAppRequestsRequester`, {
+				headers: {
+					Authorization: `Bearer ${myUser.token.current}`,
+				},
+			})
 			.then((res) => {
 				setApprovedRequests(res.data.reverse());
+				setLoading(false);
 			})
-			.catch((err) =>
+			.catch((err) => {
 				console.log(
 					"error in getting approved requests for requester",
 					err
-				)
-			);
+				);
+				setLoading(false);
+			});
 	}, [myUser.refresh]);
 
 	const renderItem = ({ item }) => {
 		return <RequesterCards data={item} />;
 	};
+
+	if (loading) {
+		return (
+			<View style={Styles.container}>
+				<ActivityIndicator color="black" />
+			</View>
+		);
+	}
+
+	if (approvedRequests.length === 0) {
+		return (
+			<View style={Styles.container}>
+				<Text>There are no approved requests</Text>
+			</View>
+		);
+	}
 
 	return (
 		<SafeAreaView>

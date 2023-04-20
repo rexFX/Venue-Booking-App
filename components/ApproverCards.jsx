@@ -5,6 +5,7 @@ import { useUserContext } from "../context/context";
 import { ActivityIndicator } from "react-native";
 import { useState } from "react";
 import axios from "axios";
+import { REACT_APP_SERVER_URL } from "@env";
 
 const ApproverCards = ({ data }) => {
 	const myUser = useUserContext();
@@ -16,7 +17,7 @@ const ApproverCards = ({ data }) => {
 		setAnimate(true);
 		axios
 			.post(
-				"https://venuebooking.onrender.com/api/v1/approve",
+				`${REACT_APP_SERVER_URL}/api/v1/approve`,
 				{
 					booking_id: data.booking_id,
 				},
@@ -41,7 +42,7 @@ const ApproverCards = ({ data }) => {
 		setAnimate(true);
 		axios
 			.post(
-				"https://venuebooking.onrender.com/api/v1/deny",
+				`${REACT_APP_SERVER_URL}/api/v1/deny`,
 				{
 					booking_id: data.booking_id,
 				},

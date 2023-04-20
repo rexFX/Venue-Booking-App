@@ -8,6 +8,7 @@ import { ActivityIndicator } from "react-native";
 import { useUserContext } from "../../context/context";
 import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
+import { REACT_APP_SERVER_URL } from "@env";
 
 const CreateRequest = ({ navigation }) => {
 	const myUser = useUserContext();
@@ -100,7 +101,7 @@ const CreateRequest = ({ navigation }) => {
 		) {
 			axios
 				.post(
-					"https://venuebooking.onrender.com/api/v1/createRequest",
+					`${REACT_APP_SERVER_URL}/api/v1/createRequest`,
 					{
 						room: room,
 						eventBrief: eventBrief,
@@ -309,6 +310,10 @@ const CreateRequest = ({ navigation }) => {
 							onPress={handleDialogSubmit}
 						/>
 						<Dialog.Button title="Cancel" onPress={toggleDialog} />
+						<Dialog.Button
+							title="Refresh"
+							onPress={myUser.refreshReviewers}
+						/>
 					</Dialog.Actions>
 				</Dialog>
 			</View>

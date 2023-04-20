@@ -2,6 +2,7 @@ node_modules/
 .expo/
 dist/
 npm-debug.*
+.env
 google-services.json
 *.jks
 *.p8

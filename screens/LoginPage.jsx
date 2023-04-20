@@ -1,4 +1,4 @@
-import { View, TextInput, ActivityIndicator } from "react-native";
+import { View, TextInput, ActivityIndicator, Text } from "react-native";
 import { ButtonGroup, Button } from "@rneui/themed";
 import Styles from "../constants/Styles";
 import { useState } from "react";
@@ -10,6 +10,7 @@ const LoginPage = () => {
 	const [selectedUserType, setSelectedUserType] = useState("Requester");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [errorText, setErrorText] = useState("");
 	const myUser = useUserContext();
 
 	const emailHandler = (val) => {
@@ -58,30 +59,57 @@ const LoginPage = () => {
 					color: "gray",
 				}}
 			/>
-			<Button
-				title={
-					myUser.signingIn ? (
-						<ActivityIndicator color={"#ffffff"} />
-					) : (
-						`Login as ${selectedUserType.toLowerCase()}`
-					)
-				}
-				raised="true"
-				titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
-				containerStyle={{
+			<View
+				style={{
 					marginTop: 40,
-					borderRadius: 12,
+					width: 400,
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
 				}}
-				buttonStyle={{
-					width: 200,
-					height: 50,
-					borderRadius: 12,
-				}}
-				onPress={async () => {
-					myUser.setSigningIn(true);
-					await myUser.signIn(email, password, selectedIndex);
-				}}
-			/>
+			>
+				{errorText && (
+					<Text
+						style={{
+							...Styles.subHeading,
+							color: "red",
+						}}
+					>
+						{errorText}
+					</Text>
+				)}
+				<Button
+					title={
+						myUser.signingIn ? (
+							<ActivityIndicator color={"#ffffff"} />
+						) : (
+							`Login as ${selectedUserType.toLowerCase()}`
+						)
+					}
+					raised="true"
+					titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
+					containerStyle={{
+						marginTop: 10,
+						borderRadius: 12,
+					}}
+					buttonStyle={{
+						width: 200,
+						height: 50,
+						borderRadius: 12,
+					}}
+					onPress={async () => {
+						myUser.setSigningIn(true);
+						let resp = await myUser.signIn(
+							email,
+							password,
+							selectedIndex
+						);
+						if (resp.status !== 200) {
+							setErrorText(resp.data.error);
+						}
+					}}
+				/>
+			</View>
 		</SafeAreaView>
 	);
 };

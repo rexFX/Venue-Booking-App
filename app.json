@@ -1,43 +1,49 @@
 {
-  "expo": {
-    "name": "VenueBookingApp",
-    "slug": "VenueBookingApp",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.rexfx.VenueBookingApp",
-      "googleServicesFile": "./google-services.json"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "2db56561-ed5a-4797-955f-91bc59f80636"
-      }
-    },
-    "plugins": [
-      "@react-native-firebase/app"
-    ],
-    "ios": {
-      "bundleIdentifier": "com.rexfx.VenueBookingApp"
-    }
-  }
+	"expo": {
+		"name": "VenueBookingApp",
+		"slug": "VenueBookingApp",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon1.png",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash1.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": ["**/*"],
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#FFFFFF"
+			},
+			"package": "com.rexfx.VenueBookingApp",
+			"googleServicesFile": "./google-services.json"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "2db56561-ed5a-4797-955f-91bc59f80636"
+			}
+		},
+		"plugins": [
+			"@react-native-firebase/app",
+			"@notifee/react-native",
+			[
+				"expo-build-properties",
+				{
+					"android": {
+						"compileSdkVersion": 33,
+						"targetSdkVersion": 33,
+						"buildToolsVersion": "33.0.0"
+					}
+				}
+			]
+		]
+	}
 }
