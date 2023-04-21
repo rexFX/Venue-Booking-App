@@ -1,6 +1,5 @@
-import { Text, View, TextInput, ScrollView } from "react-native";
+import { Text, View, TextInput } from "react-native";
 import { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Dialog, CheckBox, Button } from "@rneui/themed";
 import Styles from "../../constants/Styles";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -29,6 +28,8 @@ const CreateRequest = ({ navigation }) => {
 	const [approverName, setApproverName] = useState("");
 	const [dialogVisibility, setDialogVisibility] = useState(false);
 	const [checked, setChecked] = useState(0);
+	const [reqCreatedText, setReqCreatedText] = useState("");
+	const [textColor, setTextColor] = useState("green");
 
 	useFocusEffect(() => {
 		navigation.getParent("parentStackNavigator").setOptions({
@@ -88,7 +89,6 @@ const CreateRequest = ({ navigation }) => {
 	};
 
 	const handleSubmit = () => {
-		setSendingReq(true);
 		if (
 			eventBrief.length > 0 &&
 			room.length > 0 &&
@@ -99,6 +99,7 @@ const CreateRequest = ({ navigation }) => {
 			endTime.length > 0 &&
 			approverID.length > 0
 		) {
+			setSendingReq(true);
 			axios
 				.post(
 					`${REACT_APP_SERVER_URL}/api/v1/createRequest`,
@@ -123,17 +124,22 @@ const CreateRequest = ({ navigation }) => {
 				)
 				.then((res) => {
 					console.log(res.data);
+					setReqCreatedText(
+						`Request created successfully for booking ID: ${res.data.bookingID}`
+					);
+					setTextColor("green");
 					setSendingReq(false);
 				})
 				.catch((err) => {
-					console.log(err);
+					setReqCreatedText(err.response.data.message);
+					setTextColor("red");
 					setSendingReq(false);
 				});
 		}
 	};
 
 	return (
-		<SafeAreaView style={Styles.container}>
+		<View style={Styles.container}>
 			<View>
 				<TextInput
 					style={Styles.inputStyle}
@@ -339,7 +345,20 @@ const CreateRequest = ({ navigation }) => {
 					}}
 				/>
 			</View>
-		</SafeAreaView>
+			{reqCreatedText && (
+				<Text
+					style={{
+						...Styles.subHeading,
+						width: 250,
+						textAlign: "center",
+						color: textColor,
+						marginTop: 8,
+					}}
+				>
+					{reqCreatedText}
+				</Text>
+			)}
+		</View>
 	);
 };
 

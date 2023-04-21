@@ -1,6 +1,5 @@
 import { FlatList, Text, View, ActivityIndicator } from "react-native";
 import ApproverCards from "../../components/ApproverCards";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { useEffect } from "react";
@@ -76,7 +75,7 @@ const PendingReviewer = ({ navigation }) => {
 	}
 
 	return (
-		<SafeAreaView>
+		<View>
 			<FlatList
 				data={pendingRequests}
 				renderItem={renderItem}
@@ -85,7 +84,7 @@ const PendingReviewer = ({ navigation }) => {
 				showsHorizontalScrollIndicator={false}
 				initialNumToRender={5}
 			/>
-		</SafeAreaView>
+		</View>
 	);
 };
 

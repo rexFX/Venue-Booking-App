@@ -2,7 +2,6 @@ import { Text, View, TextInput, ActivityIndicator } from "react-native";
 import { ButtonGroup, Button } from "@rneui/themed";
 import Styles from "../constants/Styles";
 import { useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useUserContext } from "../context/context";
 
 const SignupPage = () => {
@@ -18,7 +17,7 @@ const SignupPage = () => {
 	const myUser = useUserContext();
 
 	return (
-		<SafeAreaView style={Styles.container}>
+		<View style={Styles.container}>
 			<View>
 				<TextInput
 					style={Styles.inputStyle}
@@ -164,7 +163,7 @@ const SignupPage = () => {
 					}}
 				/>
 			</View>
-		</SafeAreaView>
+		</View>
 	);
 };
 

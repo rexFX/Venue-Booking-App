@@ -1,11 +1,10 @@
 import { Button } from "@rneui/themed";
-import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Text, View } from "react-native";
 import Styles from "../constants/Styles";
 
 const Initialize = ({ navigation }) => {
 	return (
-		<SafeAreaView style={Styles.container}>
+		<View style={Styles.container}>
 			<Text style={Styles.heading}>Venue Booking App</Text>
 			<Text style={Styles.subHeading}>Hassle Free Booking</Text>
 			<Button
@@ -38,7 +37,7 @@ const Initialize = ({ navigation }) => {
 				}}
 				onPress={() => navigation.navigate("Signup")}
 			/>
-		</SafeAreaView>
+		</View>
 	);
 };
 

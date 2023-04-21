@@ -1,6 +1,5 @@
 import { Button } from "@rneui/themed";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import Styles from "../constants/Styles";
 import { useUserContext } from "../context/context";
 import { useFocusEffect } from "@react-navigation/native";
@@ -16,7 +15,7 @@ const Profile = ({ navigation }) => {
 	const myUser = useUserContext();
 
 	return (
-		<SafeAreaView style={Styles.container}>
+		<View style={Styles.container}>
 			<Text
 				style={{
 					fontFamily: "SF_Display_Bold",
@@ -34,7 +33,7 @@ const Profile = ({ navigation }) => {
 				{myUser.user}
 			</Text>
 			<Button onPress={async () => await myUser.Logout()}>Logout</Button>
-		</SafeAreaView>
+		</View>
 	);
 };
 

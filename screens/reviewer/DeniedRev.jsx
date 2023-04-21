@@ -1,6 +1,5 @@
 import { FlatList, Text, View, ActivityIndicator } from "react-native";
 import RequesterCards from "../../components/RequesterCards";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { useEffect } from "react";
@@ -82,7 +81,7 @@ const DeniedRev = ({ navigation }) => {
 	}
 
 	return (
-		<SafeAreaView>
+		<View>
 			<FlatList
 				data={deniedRequests}
 				renderItem={renderItem}
@@ -91,7 +90,7 @@ const DeniedRev = ({ navigation }) => {
 				showsHorizontalScrollIndicator={false}
 				initialNumToRender={5}
 			/>
-		</SafeAreaView>
+		</View>
 	);
 };
 

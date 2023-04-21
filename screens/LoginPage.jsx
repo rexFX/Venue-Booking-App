@@ -3,7 +3,6 @@ import { ButtonGroup, Button } from "@rneui/themed";
 import Styles from "../constants/Styles";
 import { useState } from "react";
 import { useUserContext } from "../context/context";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginPage = () => {
 	const [selectedIndex, setSelectedIndex] = useState(0);
@@ -22,7 +21,7 @@ const LoginPage = () => {
 	};
 
 	return (
-		<SafeAreaView style={Styles.container}>
+		<View style={Styles.container}>
 			<View>
 				<TextInput
 					style={Styles.inputStyle}
@@ -110,7 +109,7 @@ const LoginPage = () => {
 					}}
 				/>
 			</View>
-		</SafeAreaView>
+		</View>
 	);
 };
 

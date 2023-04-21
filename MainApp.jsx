@@ -6,8 +6,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect } from "react";
 import { Icon } from "@rneui/themed";
 import { useFonts } from "expo-font";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { Alert } from "react-native";
+import { Alert, StatusBar } from "react-native";
 import messaging from "@react-native-firebase/messaging";
 
 import Initialize from "./screens/Initialize";
@@ -297,33 +298,36 @@ export default function MainApp() {
 
 	return (
 		<SafeAreaProvider onLayout={onLayoutRootView}>
-			<NavigationContainer>
-				<Stack.Navigator
-					id="parentStackNavigator"
-					screenOptions={{
-						headerTitleStyle: {
-							fontSize: 15,
-							fontFamily: "SF_Display_Bold",
-						},
-					}}
-				>
-					{myUser.isSignedIn ? (
-						<Stack.Screen
-							name="loggedIn"
-							component={LoggedIn}
-							myUser={myUser}
-						/>
-					) : (
-						<Stack.Screen
-							options={{
-								headerShown: false,
-							}}
-							name="notLoggedIn"
-							component={NotLoggedIn}
-						/>
-					)}
-				</Stack.Navigator>
-			</NavigationContainer>
+			<SafeAreaView style={{ flex: 1 }}>
+				<StatusBar barStyle={"dark-content"} />
+				<NavigationContainer>
+					<Stack.Navigator
+						id="parentStackNavigator"
+						screenOptions={{
+							headerTitleStyle: {
+								fontSize: 15,
+								fontFamily: "SF_Display_Bold",
+							},
+						}}
+					>
+						{myUser.isSignedIn ? (
+							<Stack.Screen
+								name="loggedIn"
+								component={LoggedIn}
+								myUser={myUser}
+							/>
+						) : (
+							<Stack.Screen
+								options={{
+									headerShown: false,
+								}}
+								name="notLoggedIn"
+								component={NotLoggedIn}
+							/>
+						)}
+					</Stack.Navigator>
+				</NavigationContainer>
+			</SafeAreaView>
 		</SafeAreaProvider>
 	);
 }
