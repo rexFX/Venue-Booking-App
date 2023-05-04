@@ -1,6 +1,6 @@
 import { Text, View, TextInput, ActivityIndicator } from "react-native";
 import { ButtonGroup, Button } from "@rneui/themed";
-import Styles from "../constants/Styles";
+import Styles from "./Styles";
 import { useState } from "react";
 import { useUserContext } from "../context/context";
 
@@ -18,10 +18,11 @@ const SignupPage = () => {
 
 	return (
 		<View style={Styles.container}>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Full Name"
+					placeholderTextColor="gray"
 					autoComplete="off"
 					selectionColor={"black"}
 					value={name}
@@ -30,10 +31,11 @@ const SignupPage = () => {
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Email Address"
+					placeholderTextColor="gray"
 					autoComplete="off"
 					selectionColor={"black"}
 					value={email}
@@ -42,10 +44,11 @@ const SignupPage = () => {
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder={selectedIndex === 0 ? "Batch" : "Designation"}
+					placeholderTextColor="gray"
 					autoComplete="off"
 					selectionColor={"black"}
 					value={designation}
@@ -54,10 +57,11 @@ const SignupPage = () => {
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Password"
+					placeholderTextColor="gray"
 					selectionColor={"black"}
 					autoComplete="off"
 					secureTextEntry={true}
@@ -67,10 +71,11 @@ const SignupPage = () => {
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Confirm Password"
+					placeholderTextColor="gray"
 					selectionColor={"black"}
 					autoComplete="off"
 					secureTextEntry={true}

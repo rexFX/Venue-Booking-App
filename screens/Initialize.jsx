@@ -1,6 +1,6 @@
 import { Button } from "@rneui/themed";
 import { Text, View } from "react-native";
-import Styles from "../constants/Styles";
+import Styles from "./Styles";
 
 const Initialize = ({ navigation }) => {
 	return (

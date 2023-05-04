@@ -1,6 +1,6 @@
 import { Button, Card } from "@rneui/themed";
 import { View, Text, ScrollView } from "react-native";
-import Styles from "../constants/Styles";
+import Styles from "../screens/Styles";
 import { useUserContext } from "../context/context";
 import { ActivityIndicator } from "react-native";
 import { useState } from "react";
@@ -71,12 +71,14 @@ const ApproverCards = ({ data }) => {
 					borderRadius: 10,
 					width: "90%",
 					flexBasis: "auto",
+					backgroundColor: "#101412",
 				}}
 			>
 				<Card.Title>
 					<Text
 						style={{
 							fontFamily: "SF_Text_Bold",
+							color: "white",
 						}}
 					>
 						{data.eventBrief}
@@ -98,7 +100,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Date:
 							</Text>
 						</View>
@@ -107,6 +114,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.date}
@@ -122,7 +130,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Room No:
 							</Text>
 						</View>
@@ -131,6 +144,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.room}
@@ -146,7 +160,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Start Time:
 							</Text>
 						</View>
@@ -155,6 +174,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.time_start_hours}:
@@ -170,7 +190,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								End Time:
 							</Text>
 						</View>
@@ -179,6 +204,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.time_end_hours}:{data.time_end_minutes}
@@ -194,7 +220,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Equipments:
 							</Text>
 						</View>
@@ -213,6 +244,7 @@ const ApproverCards = ({ data }) => {
 								<Text
 									style={{
 										fontFamily: "SF_Text_Regular",
+										color: "white",
 									}}
 								>
 									{data.equipmentRequired}
@@ -228,7 +260,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Club Associated:
 							</Text>
 						</View>
@@ -237,6 +274,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.clubAssociated}
@@ -251,7 +289,12 @@ const ApproverCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Booking ID:
 							</Text>
 						</View>
@@ -260,6 +303,7 @@ const ApproverCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.booking_id}
@@ -271,7 +315,7 @@ const ApproverCards = ({ data }) => {
 							width: "100%",
 							display: "flex",
 							flexDirection: "row",
-							justifyContent: "space-around",
+							justifyContent: "space-between",
 						}}
 					>
 						<Button
@@ -289,12 +333,13 @@ const ApproverCards = ({ data }) => {
 							raised={"true"}
 							size={"lg"}
 							containerStyle={{
+								width: 120,
 								marginTop: 10,
-								borderRadius: 12,
+								borderRadius: 5,
 							}}
 							buttonStyle={{
-								borderRadius: 12,
-								backgroundColor: "#rgb(0, 200, 0)",
+								borderRadius: 5,
+								backgroundColor: "#339989",
 							}}
 							titleStyle={{
 								fontFamily: "SF_Rounded_SemiBold",
@@ -315,12 +360,13 @@ const ApproverCards = ({ data }) => {
 							raised={"true"}
 							size={"lg"}
 							containerStyle={{
+								width: 120,
 								marginTop: 10,
-								borderRadius: 12,
+								borderRadius: 5,
 							}}
 							buttonStyle={{
-								borderRadius: 12,
-								backgroundColor: "#rgb(200, 0, 0)",
+								borderRadius: 5,
+								backgroundColor: "#bb4430",
 							}}
 							titleStyle={{
 								fontFamily: "SF_Rounded_SemiBold",

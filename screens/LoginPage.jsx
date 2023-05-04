@@ -1,6 +1,6 @@
 import { View, TextInput, ActivityIndicator, Text } from "react-native";
 import { ButtonGroup, Button } from "@rneui/themed";
-import Styles from "../constants/Styles";
+import Styles from "./Styles";
 import { useState } from "react";
 import { useUserContext } from "../context/context";
 
@@ -22,19 +22,21 @@ const LoginPage = () => {
 
 	return (
 		<View style={Styles.container}>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
+					placeholderTextColor="gray"
 					placeholder="Email Address"
 					selectionColor={"black"}
 					value={email}
 					onChangeText={emailHandler}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Password"
+					placeholderTextColor="gray"
 					selectionColor={"black"}
 					secureTextEntry={true}
 					value={password}

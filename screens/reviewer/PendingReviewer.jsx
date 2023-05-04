@@ -1,4 +1,10 @@
-import { FlatList, Text, View, ActivityIndicator } from "react-native";
+import {
+	FlatList,
+	Text,
+	View,
+	ActivityIndicator,
+	RefreshControl,
+} from "react-native";
 import ApproverCards from "../../components/ApproverCards";
 import { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
@@ -8,7 +14,7 @@ import { useUserContext } from "../../context/context";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
 import { REACT_APP_SERVER_URL } from "@env";
-import Styles from "../../constants/Styles";
+import Styles from "../Styles";
 
 const PendingReviewer = ({ navigation }) => {
 	const [pendingRequests, setPendingRequests] = useState({});
@@ -24,7 +30,7 @@ const PendingReviewer = ({ navigation }) => {
 						<Icon
 							name="refresh-cw"
 							type="feather"
-							color="black"
+							color="white"
 							size={18}
 						/>
 					</TouchableOpacity>
@@ -61,7 +67,7 @@ const PendingReviewer = ({ navigation }) => {
 	if (loading) {
 		return (
 			<View style={Styles.container}>
-				<ActivityIndicator color="black" />
+				<ActivityIndicator color="white" />
 			</View>
 		);
 	}
@@ -69,20 +75,28 @@ const PendingReviewer = ({ navigation }) => {
 	if (pendingRequests.length === 0) {
 		return (
 			<View style={Styles.container}>
-				<Text>There are no pending requests</Text>
+				<Text style={{ color: "white" }}>
+					There are no pending requests
+				</Text>
 			</View>
 		);
 	}
 
 	return (
-		<View>
+		<View style={Styles.container}>
 			<FlatList
+				refreshControl={
+					<RefreshControl
+						refreshing={loading}
+						onRefresh={myUser.refreshView}
+					/>
+				}
 				data={pendingRequests}
 				renderItem={renderItem}
 				keyExtractor={(item) => item.booking_id}
 				showsVerticalScrollIndicator={false}
 				showsHorizontalScrollIndicator={false}
-				initialNumToRender={5}
+				initialNumToRender={10}
 			/>
 		</View>
 	);

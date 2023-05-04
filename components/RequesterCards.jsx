@@ -1,6 +1,6 @@
 import { Card } from "@rneui/themed";
 import { View, Text, ScrollView } from "react-native";
-import Styles from "../constants/Styles";
+import Styles from "../screens/Styles";
 
 const RequesterCards = ({ data }) => {
 	return (
@@ -11,12 +11,14 @@ const RequesterCards = ({ data }) => {
 					borderRadius: 10,
 					width: "90%",
 					flexBasis: "auto",
+					backgroundColor: "#101412",
 				}}
 			>
 				<Card.Title>
 					<Text
 						style={{
 							fontFamily: "SF_Text_Bold",
+							color: "white",
 						}}
 					>
 						{data.eventBrief}
@@ -38,7 +40,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Date:
 							</Text>
 						</View>
@@ -47,6 +54,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.date}
@@ -62,7 +70,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Room No:
 							</Text>
 						</View>
@@ -71,6 +84,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.room}
@@ -86,7 +100,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Start Time:
 							</Text>
 						</View>
@@ -95,6 +114,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.time_start_hours}:
@@ -110,7 +130,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								End Time:
 							</Text>
 						</View>
@@ -119,6 +144,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.time_end_hours}:{data.time_end_minutes}
@@ -134,7 +160,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Equipments:
 							</Text>
 						</View>
@@ -153,6 +184,7 @@ const RequesterCards = ({ data }) => {
 								<Text
 									style={{
 										fontFamily: "SF_Text_Regular",
+										color: "white",
 									}}
 								>
 									{data.equipmentRequired}
@@ -168,7 +200,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Club Associated:
 							</Text>
 						</View>
@@ -177,6 +214,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.clubAssociated}
@@ -191,7 +229,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Booking ID:
 							</Text>
 						</View>
@@ -200,6 +243,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.booking_id}
@@ -214,7 +258,12 @@ const RequesterCards = ({ data }) => {
 						}}
 					>
 						<View style={{ width: "50%" }}>
-							<Text style={{ fontFamily: "SF_Text_Bold" }}>
+							<Text
+								style={{
+									fontFamily: "SF_Text_Bold",
+									color: "white",
+								}}
+							>
 								Status:
 							</Text>
 						</View>
@@ -223,6 +272,7 @@ const RequesterCards = ({ data }) => {
 								style={{
 									fontFamily: "SF_Text_Regular",
 									textAlign: "right",
+									color: "white",
 								}}
 							>
 								{data.bookingStatus}

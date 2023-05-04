@@ -1,4 +1,10 @@
-import { FlatList, Text, View, ActivityIndicator } from "react-native";
+import {
+	FlatList,
+	Text,
+	View,
+	ActivityIndicator,
+	RefreshControl,
+} from "react-native";
 import RequesterCards from "../../components/RequesterCards";
 
 import { useState } from "react";
@@ -9,7 +15,7 @@ import { useUserContext } from "../../context/context";
 import { TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/themed";
 import { REACT_APP_SERVER_URL } from "@env";
-import Styles from "../../constants/Styles";
+import Styles from "../Styles";
 
 const ApprovedRev = ({ navigation }) => {
 	const [approvedRequests, setApprovedRequests] = useState({});
@@ -25,7 +31,7 @@ const ApprovedRev = ({ navigation }) => {
 						<Icon
 							name="refresh-cw"
 							type="feather"
-							color="black"
+							color="white"
 							size={18}
 						/>
 					</TouchableOpacity>
@@ -62,7 +68,7 @@ const ApprovedRev = ({ navigation }) => {
 	if (loading) {
 		return (
 			<View style={Styles.container}>
-				<ActivityIndicator color="black" />
+				<ActivityIndicator color="white" />
 			</View>
 		);
 	}
@@ -70,20 +76,28 @@ const ApprovedRev = ({ navigation }) => {
 	if (approvedRequests.length === 0) {
 		return (
 			<View style={Styles.container}>
-				<Text>There are no approved requests</Text>
+				<Text style={{ color: "white" }}>
+					There are no approved requests
+				</Text>
 			</View>
 		);
 	}
 
 	return (
-		<View>
+		<View style={Styles.container}>
 			<FlatList
+				refreshControl={
+					<RefreshControl
+						refreshing={loading}
+						onRefresh={myUser.refreshView}
+					/>
+				}
 				data={approvedRequests}
 				renderItem={renderItem}
 				keyExtractor={(item) => item.booking_id}
 				showsVerticalScrollIndicator={false}
 				showsHorizontalScrollIndicator={false}
-				initialNumToRender={5}
+				initialNumToRender={10}
 			/>
 		</View>
 	);

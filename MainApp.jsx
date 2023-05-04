@@ -50,6 +50,9 @@ const LoggedIn = () => {
 			initialRouteName="home"
 			screenOptions={{
 				headerShown: false,
+				tabBarStyle: {
+					backgroundColor: "#191a1f",
+				},
 			}}
 		>
 			{myUser.userType.current === "reviewer" ? (
@@ -68,7 +71,7 @@ const LoggedIn = () => {
 									<Icon
 										name="clock"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -89,7 +92,7 @@ const LoggedIn = () => {
 									<Icon
 										name="check"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -110,7 +113,7 @@ const LoggedIn = () => {
 									<Icon
 										name="x"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -131,7 +134,7 @@ const LoggedIn = () => {
 									<Icon
 										name="user"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -155,7 +158,7 @@ const LoggedIn = () => {
 									<Icon
 										name="clock"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -176,7 +179,7 @@ const LoggedIn = () => {
 									<Icon
 										name="check"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -197,7 +200,7 @@ const LoggedIn = () => {
 									<Icon
 										name="x"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -218,7 +221,7 @@ const LoggedIn = () => {
 									<Icon
 										name="edit-3"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -239,7 +242,7 @@ const LoggedIn = () => {
 									<Icon
 										name="user"
 										type="feather"
-										color="black"
+										color="white"
 										size={18}
 									/>
 								);
@@ -298,8 +301,9 @@ export default function MainApp() {
 
 	return (
 		<SafeAreaProvider onLayout={onLayoutRootView}>
+			<StatusBar barStyle={"light-content"} backgroundColor={"black"} />
+			<SafeAreaView style={{ flex: 0 }} />
 			<SafeAreaView style={{ flex: 1 }}>
-				<StatusBar barStyle={"dark-content"} />
 				<NavigationContainer>
 					<Stack.Navigator
 						id="parentStackNavigator"
@@ -307,6 +311,10 @@ export default function MainApp() {
 							headerTitleStyle: {
 								fontSize: 15,
 								fontFamily: "SF_Display_Bold",
+								color: "white",
+							},
+							headerStyle: {
+								backgroundColor: "#191a1f",
 							},
 						}}
 					>

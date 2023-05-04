@@ -1,7 +1,7 @@
 import { Text, View, TextInput } from "react-native";
 import { useState } from "react";
 import { Dialog, CheckBox, Button } from "@rneui/themed";
-import Styles from "../../constants/Styles";
+import Styles from "../Styles";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { ActivityIndicator } from "react-native";
 import { useUserContext } from "../../context/context";
@@ -18,8 +18,8 @@ const CreateRequest = ({ navigation }) => {
 	const [equipments, setEquipments] = useState("");
 	const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
 
-	const [startTime, setStartTime] = useState("");
-	const [endTime, setEndTime] = useState("");
+	const [startTime, setStartTime] = useState("Start Time");
+	const [endTime, setEndTime] = useState("End Time");
 	const [whichTime, setWhichTime] = useState(1);
 	const [isTimePickerVisible, setIsTimePickerVisible] = useState(false);
 	const [sendingReq, setSendingReq] = useState(false);
@@ -140,188 +140,187 @@ const CreateRequest = ({ navigation }) => {
 
 	return (
 		<View style={Styles.container}>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Event Brief"
+					placeholderTextColor="gray"
 					autoComplete="off"
-					selectionColor={"black"}
+					selectionColor={"white"}
 					value={eventBrief}
 					onChangeText={(val) => {
 						setEventBrief(val);
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Room"
+					placeholderTextColor="gray"
 					autoComplete="off"
-					selectionColor={"black"}
+					selectionColor={"white"}
 					value={room}
 					onChangeText={(val) => {
 						setRoom(val);
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Club Associated"
+					placeholderTextColor="gray"
 					autoComplete="off"
-					selectionColor={"black"}
+					selectionColor={"white"}
 					value={clubAssociated}
 					onChangeText={(val) => {
 						setClubAssociated(val);
 					}}
 				/>
 			</View>
-			<View>
+			<View style={Styles.inputViewBorder}>
 				<TextInput
 					style={Styles.inputStyle}
 					placeholder="Equipments Required"
+					placeholderTextColor="gray"
 					autoComplete="off"
-					selectionColor={"black"}
+					selectionColor={"white"}
 					value={equipments}
 					onChangeText={(val) => {
 						setEquipments(val);
 					}}
 				/>
 			</View>
-			<View>
-				<Button
-					title={date.length > 0 ? `${date}` : "Choose Date"}
-					onPress={showDatePicker}
-					raised="true"
-					titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
-					color="black"
-					containerStyle={{
-						borderRadius: 12,
+			<View style={{ width: 300 }}>
+				<View
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+						marginVertical: 10,
 					}}
-					buttonStyle={{
-						width: 250,
-						borderRadius: 12,
-					}}
-				/>
-				<DateTimePickerModal
-					isVisible={isDatePickerVisible}
-					mode="date"
-					onConfirm={handleConfirmDate}
-					onCancel={hideDatePicker}
-				/>
-			</View>
-			<View>
-				<Button
-					title={
-						"Start Time" +
-						`${startTime.length > 0 ? `:  ${startTime}` : ""}`
-					}
-					onPress={() => {
-						setWhichTime(1);
-						showTimePicker();
-					}}
-					raised="true"
-					titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
-					color="black"
-					containerStyle={{
-						margin: 5,
-						borderRadius: 12,
-					}}
-					buttonStyle={{
-						width: 250,
-						borderRadius: 12,
-					}}
-				/>
-				<DateTimePickerModal
-					isVisible={isTimePickerVisible}
-					mode="time"
-					onConfirm={handleConfirmTime}
-					onCancel={hideTimePicker}
-				/>
-			</View>
-			<View>
-				<Button
-					title={
-						"End Time" +
-						`${endTime.length > 0 ? `:  ${endTime}` : ""}`
-					}
-					onPress={() => {
-						setWhichTime(2);
-						showTimePicker();
-					}}
-					raised="true"
-					titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
-					color="black"
-					containerStyle={{
-						borderRadius: 12,
-					}}
-					buttonStyle={{
-						width: 250,
-						borderRadius: 12,
-					}}
-				/>
-				<DateTimePickerModal
-					isVisible={isTimePickerVisible}
-					mode="time"
-					onConfirm={handleConfirmTime}
-					onCancel={hideTimePicker}
-				/>
-			</View>
-			<View>
-				<Button
-					title={
-						approverName.length > 0
-							? `${approverName}`
-							: "Select Your Reviewer"
-					}
-					onPress={toggleDialog}
-					raised="true"
-					color="black"
-					containerStyle={{
-						margin: 5,
-						borderRadius: 12,
-					}}
-					buttonStyle={{
-						width: 250,
-						borderRadius: 12,
-					}}
-				/>
-				<Dialog
-					isVisible={dialogVisibility}
-					onBackdropPress={toggleDialog}
 				>
-					<Dialog.Title title="Reviewers" />
-					<Text>
-						Select your reviewer who will check your application
-					</Text>
-					{myUser.reviewers.map((el, index) => {
-						return (
-							<CheckBox
-								key={index}
-								title={el.Name}
-								containerStyle={{
-									backgroundColor: "white",
-									borderWidth: 0,
-								}}
-								checkedIcon="dot-circle-o"
-								uncheckedIcon="circle-o"
-								checked={checked === index}
-								onPress={() => setChecked(index)}
-							/>
-						);
-					})}
-					<Dialog.Actions>
-						<Dialog.Button
-							title="Confirm"
-							onPress={handleDialogSubmit}
+					<View>
+						<Button
+							title={date.length > 0 ? `${date}` : "Date"}
+							onPress={showDatePicker}
+							raised="true"
+							titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
+							color="black"
+							containerStyle={Styles.createReqBtnContainerStyle}
+							buttonStyle={Styles.createReqBtnBtnStyle}
 						/>
-						<Dialog.Button title="Cancel" onPress={toggleDialog} />
-						<Dialog.Button
-							title="Refresh"
-							onPress={myUser.refreshReviewers}
+						<DateTimePickerModal
+							isVisible={isDatePickerVisible}
+							mode="date"
+							onConfirm={handleConfirmDate}
+							onCancel={hideDatePicker}
 						/>
-					</Dialog.Actions>
-				</Dialog>
+					</View>
+					<View>
+						<Button
+							title={
+								approverName.length > 0
+									? `${approverName}`
+									: "Reviewer"
+							}
+							onPress={toggleDialog}
+							raised="true"
+							color="black"
+							containerStyle={Styles.createReqBtnContainerStyle}
+							buttonStyle={Styles.createReqBtnBtnStyle}
+						/>
+						<Dialog
+							isVisible={dialogVisibility}
+							onBackdropPress={toggleDialog}
+						>
+							<Dialog.Title title="Reviewers" />
+							<Text>
+								Select your reviewer who will check your
+								application
+							</Text>
+							{myUser.reviewers.map((el, index) => {
+								return (
+									<CheckBox
+										key={index}
+										title={el.Name}
+										containerStyle={{
+											backgroundColor: "white",
+											borderWidth: 0,
+										}}
+										checkedIcon="dot-circle-o"
+										uncheckedIcon="circle-o"
+										checked={checked === index}
+										onPress={() => setChecked(index)}
+									/>
+								);
+							})}
+							<Dialog.Actions>
+								<Dialog.Button
+									title="Confirm"
+									onPress={handleDialogSubmit}
+								/>
+								<Dialog.Button
+									title="Cancel"
+									onPress={toggleDialog}
+								/>
+								<Dialog.Button
+									title="Refresh"
+									onPress={myUser.refreshReviewers}
+								/>
+							</Dialog.Actions>
+						</Dialog>
+					</View>
+				</View>
+				<View
+					style={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-evenly",
+					}}
+				>
+					<View>
+						<Button
+							title={startTime}
+							onPress={() => {
+								setWhichTime(1);
+								showTimePicker();
+							}}
+							raised="true"
+							titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
+							color="black"
+							containerStyle={Styles.createReqBtnContainerStyle}
+							buttonStyle={Styles.createReqBtnBtnStyle}
+						/>
+						<DateTimePickerModal
+							isVisible={isTimePickerVisible}
+							mode="time"
+							onConfirm={handleConfirmTime}
+							onCancel={hideTimePicker}
+						/>
+					</View>
+					<View>
+						<Button
+							title={endTime}
+							onPress={() => {
+								setWhichTime(2);
+								showTimePicker();
+							}}
+							raised="true"
+							titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
+							color="black"
+							containerStyle={Styles.createReqBtnContainerStyle}
+							buttonStyle={Styles.createReqBtnBtnStyle}
+						/>
+						<DateTimePickerModal
+							isVisible={isTimePickerVisible}
+							mode="time"
+							onConfirm={handleConfirmTime}
+							onCancel={hideTimePicker}
+						/>
+					</View>
+				</View>
 			</View>
 			<View>
 				<Button
@@ -336,12 +335,12 @@ const CreateRequest = ({ navigation }) => {
 					raised="true"
 					titleStyle={{ fontFamily: "SF_Rounded_SemiBold" }}
 					containerStyle={{
-						marginTop: 10,
-						borderRadius: 12,
+						marginTop: 12,
+						borderRadius: 5,
 					}}
 					buttonStyle={{
 						width: 250,
-						borderRadius: 12,
+						borderRadius: 5,
 					}}
 				/>
 			</View>
