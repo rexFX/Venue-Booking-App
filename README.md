@@ -15,13 +15,17 @@ An android app of https://github.com/itsadityap/Venue-Booking-Application which 
 ### Snapshots:
 
 -   **Startup**
+
     ![startup](/public/initial_screen.png)
 
 -   **Login and Signup**
+
     ![login](/public/login.png) ![signup](/public/signup.png)
 
 -   **Approver**
+
     ![approver_pending](/public/approver_pending.png) ![approver_approved](/public/approver_approved.png) ![approver_denied](/public/approver_denied.png) ![approver_logout](/public/approver_profile.png)
 
 -   **Requester**
+
     ![create_request](/public/create.png) ![requester_pending](/public/pending_req.png) ![requester_approved](/public/approved_req.png) ![requester_denied](/public/denied.png) ![requester_profile](/public/logout.png)
